@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api\V1\Auth;
 
+use App\Enums\UserRole;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SignupRequest extends FormRequest
 {
@@ -17,7 +19,15 @@ class SignupRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['sometimes', 'string', Rule::enum(UserRole::class)],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        if (! $this->has('role')) {
+            $this->merge(['role' => UserRole::User->value]);
+        }
     }
 
     public function messages(): array
@@ -29,6 +39,7 @@ class SignupRequest extends FormRequest
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 8 characters.',
             'password.confirmed' => 'The password confirmation does not match.',
+            'role.enum' => 'The selected role is invalid.',
         ];
     }
 }

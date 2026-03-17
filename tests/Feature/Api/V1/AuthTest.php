@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserRole;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -71,6 +72,47 @@ it('can signup and receive a token', function () {
     expect($response->json('data.token'))->not->toBeEmpty();
 
     $this->assertDatabaseHas('users', ['email' => 'newuser@example.com']);
+});
+
+it('can signup with role and receive a token', function () {
+    /** @var TestCase $this */
+    $response = $this->postJson('/api/v1/auth/signup', [
+        'name' => 'Admin User',
+        'email' => 'admin@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'role' => 'admin',
+    ]);
+
+    $response->assertCreated()
+        ->assertJsonPath('data.user.role', 'admin');
+    expect(User::query()->where('email', 'admin@example.com')->first()->role)->toBe(UserRole::Admin);
+});
+
+it('defaults to user role when role is omitted on signup', function () {
+    /** @var TestCase $this */
+    $response = $this->postJson('/api/v1/auth/signup', [
+        'name' => 'New User',
+        'email' => 'noreason@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+    ]);
+
+    $response->assertCreated()
+        ->assertJsonPath('data.user.role', 'user');
+    expect(User::query()->where('email', 'noreason@example.com')->first()->role)->toBe(UserRole::User);
+});
+
+it('returns 422 for signup with invalid role', function () {
+    /** @var TestCase $this */
+    $this->postJson('/api/v1/auth/signup', [
+        'name' => 'New User',
+        'email' => 'newuser@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+        'role' => 'superadmin',
+    ])->assertUnprocessable()
+        ->assertJsonValidationErrors(['role']);
 });
 
 it('returns 422 for signup with duplicate email', function () {

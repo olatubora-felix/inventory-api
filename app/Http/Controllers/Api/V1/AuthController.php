@@ -90,7 +90,8 @@ class AuthController extends Controller
      *             @OA\Property(property="name", type="string", example="Jane Doe"),
      *             @OA\Property(property="email", type="string", format="email", example="jane@example.com"),
      *             @OA\Property(property="password", type="string", example="password"),
-     *             @OA\Property(property="password_confirmation", type="string", example="password")
+     *             @OA\Property(property="password_confirmation", type="string", example="password"),
+     *             @OA\Property(property="role", type="string", enum={"admin", "user"}, example="user")
      *         )
      *     ),
      *
@@ -104,7 +105,7 @@ class AuthController extends Controller
             'name' => $request->validated('name'),
             'email' => $request->validated('email'),
             'password' => $request->validated('password'),
-            'role' => UserRole::User,
+            'role' => UserRole::from($request->validated('role')),
         ]);
 
         $token = $user->createToken('api-token')->plainTextToken;

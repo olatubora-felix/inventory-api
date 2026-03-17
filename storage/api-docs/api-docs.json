@@ -83,6 +83,14 @@
                                     "password_confirmation": {
                                         "type": "string",
                                         "example": "password"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "enum": [
+                                            "admin",
+                                            "user"
+                                        ],
+                                        "example": "user"
                                     }
                                 },
                                 "type": "object"

@@ -22,7 +22,7 @@ class StockMovementController extends Controller
      *     summary="List stock movements",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="product_id", in="query", required=false, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="product_id", in="query", required=false, @OA\Schema(type="string", format="uuid")),
      *     @OA\Parameter(name="type", in="query", required=false, @OA\Schema(type="string", enum={"purchase","consumption","adjustment","waste","return"})),
      *     @OA\Parameter(name="from", in="query", required=false, @OA\Schema(type="string", format="date")),
      *     @OA\Parameter(name="to", in="query", required=false, @OA\Schema(type="string", format="date")),
@@ -56,7 +56,7 @@ class StockMovementController extends Controller
      *     @OA\RequestBody(required=true, @OA\JsonContent(
      *         required={"product_id","type","quantity"},
      *
-     *         @OA\Property(property="product_id", type="integer"),
+     *         @OA\Property(property="product_id", type="string", format="uuid"),
      *         @OA\Property(property="type", type="string", enum={"purchase","consumption","adjustment","waste","return"}),
      *         @OA\Property(property="quantity", type="number", minimum=0.001),
      *         @OA\Property(property="unit_cost", type="number", nullable=true),
@@ -127,7 +127,7 @@ class StockMovementController extends Controller
      *     summary="Show a single stock movement",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="stock_movement", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="stock_movement", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=200, description="Movement details"),
      *     @OA\Response(response=404, description="Not found")

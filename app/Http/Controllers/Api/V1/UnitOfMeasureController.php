@@ -61,7 +61,7 @@ class UnitOfMeasureController extends Controller
      *     summary="Show a unit of measure",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="unit_of_measure", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="unit_of_measure", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=200, description="Unit details"),
      *     @OA\Response(response=404, description="Not found")
@@ -79,7 +79,7 @@ class UnitOfMeasureController extends Controller
      *     summary="Update a unit of measure (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="unit_of_measure", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="unit_of_measure", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\RequestBody(required=true, @OA\JsonContent(
      *         required={"name","abbreviation"},
@@ -107,7 +107,7 @@ class UnitOfMeasureController extends Controller
      *     summary="Delete a unit of measure (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="unit_of_measure", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="unit_of_measure", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=204, description="Deleted"),
      *     @OA\Response(response=403, description="Forbidden")
@@ -115,6 +115,10 @@ class UnitOfMeasureController extends Controller
      */
     public function destroy(UnitOfMeasure $unitOfMeasure): JsonResponse
     {
+        if ($unitOfMeasure->products()->exists()) {
+            return ApiResponse::error('Cannot delete a unit of measure that is assigned to products.', 409);
+        }
+
         $unitOfMeasure->delete();
 
         return ApiResponse::success(null, 'Unit of measure deleted successfully.');

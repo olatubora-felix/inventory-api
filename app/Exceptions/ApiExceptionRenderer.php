@@ -29,7 +29,7 @@ class ApiExceptionRenderer
             $e instanceof AuthenticationException => ApiResponse::error('Unauthenticated.', 401),
             $e instanceof AuthorizationException => ApiResponse::error($e->getMessage() ?: 'Forbidden.', 403),
             $e instanceof ModelNotFoundException => ApiResponse::error('Resource not found.', 404),
-            $e instanceof NotFoundHttpException => ApiResponse::error($e->getMessage() ?: 'Not found.', 404),
+            $e instanceof NotFoundHttpException => ApiResponse::error('Not found.', 404),
             $e instanceof HttpException => ApiResponse::error($e->getMessage() ?: 'Error.', $e->getStatusCode()),
             default => $this->renderServerError($e),
         };

@@ -69,7 +69,7 @@ class SupplierController extends Controller
      *     summary="Show a supplier",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="supplier", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="supplier", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=200, description="Supplier details"),
      *     @OA\Response(response=404, description="Not found")
@@ -87,7 +87,7 @@ class SupplierController extends Controller
      *     summary="Update a supplier (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="supplier", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="supplier", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\RequestBody(required=true, @OA\JsonContent(
      *         required={"name"},
@@ -119,7 +119,7 @@ class SupplierController extends Controller
      *     summary="Soft-delete a supplier (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="supplier", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="supplier", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=204, description="Deleted"),
      *     @OA\Response(response=403, description="Forbidden")

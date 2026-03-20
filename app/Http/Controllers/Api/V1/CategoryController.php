@@ -64,7 +64,7 @@ class CategoryController extends Controller
      *     summary="Show a single category",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="category", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="category", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=200, description="Category details"),
      *     @OA\Response(response=404, description="Not found")
@@ -82,7 +82,7 @@ class CategoryController extends Controller
      *     summary="Update a category (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="category", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="category", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\RequestBody(required=true, @OA\JsonContent(
      *         required={"name"},
@@ -110,7 +110,7 @@ class CategoryController extends Controller
      *     summary="Delete a category (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="category", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="category", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=204, description="Deleted"),
      *     @OA\Response(response=403, description="Forbidden")

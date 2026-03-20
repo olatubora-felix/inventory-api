@@ -281,7 +281,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -311,7 +312,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -366,7 +368,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -398,7 +401,8 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     },
                     {
@@ -406,7 +410,8 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     },
                     {
@@ -470,10 +475,12 @@
                                         "nullable": true
                                     },
                                     "category_id": {
-                                        "type": "integer"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "unit_of_measure_id": {
-                                        "type": "integer"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "reorder_level": {
                                         "type": "number"
@@ -488,7 +495,8 @@
                                     "supplier_ids": {
                                         "type": "array",
                                         "items": {
-                                            "type": "integer"
+                                            "type": "string",
+                                            "format": "uuid"
                                         }
                                     }
                                 },
@@ -528,7 +536,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -558,7 +567,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -582,10 +592,12 @@
                                         "type": "string"
                                     },
                                     "category_id": {
-                                        "type": "integer"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "unit_of_measure_id": {
-                                        "type": "integer"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "reorder_level": {
                                         "type": "number"
@@ -600,7 +612,8 @@
                                     "supplier_ids": {
                                         "type": "array",
                                         "items": {
-                                            "type": "integer"
+                                            "type": "string",
+                                            "format": "uuid"
                                         }
                                     }
                                 },
@@ -638,7 +651,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -736,7 +750,8 @@
                         "in": "query",
                         "required": false,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     },
                     {
@@ -813,7 +828,8 @@
                                 ],
                                 "properties": {
                                     "product_id": {
-                                        "type": "integer"
+                                        "type": "string",
+                                        "format": "uuid"
                                     },
                                     "type": {
                                         "type": "string",
@@ -883,7 +899,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -1008,7 +1025,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -1038,7 +1056,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -1109,7 +1128,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -1210,7 +1230,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -1240,7 +1261,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],
@@ -1295,7 +1317,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "format": "uuid"
                         }
                     }
                 ],

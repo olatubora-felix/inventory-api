@@ -21,8 +21,8 @@ class ProductController extends Controller
      *     summary="List all products",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="category_id", in="query", required=false, @OA\Schema(type="integer")),
-     *     @OA\Parameter(name="supplier_id", in="query", required=false, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="category_id", in="query", required=false, @OA\Schema(type="string", format="uuid")),
+     *     @OA\Parameter(name="supplier_id", in="query", required=false, @OA\Schema(type="string", format="uuid")),
      *     @OA\Parameter(name="search", in="query", required=false, @OA\Schema(type="string")),
      *     @OA\Parameter(name="per_page", in="query", required=false, @OA\Schema(type="integer")),
      *
@@ -55,12 +55,12 @@ class ProductController extends Controller
      *         @OA\Property(property="name", type="string"),
      *         @OA\Property(property="sku", type="string"),
      *         @OA\Property(property="description", type="string", nullable=true),
-     *         @OA\Property(property="category_id", type="integer"),
-     *         @OA\Property(property="unit_of_measure_id", type="integer"),
+     *         @OA\Property(property="category_id", type="string", format="uuid"),
+     *         @OA\Property(property="unit_of_measure_id", type="string", format="uuid"),
      *         @OA\Property(property="reorder_level", type="number"),
      *         @OA\Property(property="cost_price", type="number", nullable=true),
      *         @OA\Property(property="is_active", type="boolean"),
-     *         @OA\Property(property="supplier_ids", type="array", @OA\Items(type="integer"))
+     *         @OA\Property(property="supplier_ids", type="array", @OA\Items(type="string", format="uuid"))
      *     )),
      *
      *     @OA\Response(response=201, description="Product created"),
@@ -92,7 +92,7 @@ class ProductController extends Controller
      *     summary="Show a product",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="product", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="product", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=200, description="Product details"),
      *     @OA\Response(response=404, description="Not found")
@@ -110,19 +110,19 @@ class ProductController extends Controller
      *     summary="Update a product (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="product", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="product", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\RequestBody(required=true, @OA\JsonContent(
      *         required={"name","sku","category_id","unit_of_measure_id","reorder_level"},
      *
      *         @OA\Property(property="name", type="string"),
      *         @OA\Property(property="sku", type="string"),
-     *         @OA\Property(property="category_id", type="integer"),
-     *         @OA\Property(property="unit_of_measure_id", type="integer"),
+     *         @OA\Property(property="category_id", type="string", format="uuid"),
+     *         @OA\Property(property="unit_of_measure_id", type="string", format="uuid"),
      *         @OA\Property(property="reorder_level", type="number"),
      *         @OA\Property(property="cost_price", type="number", nullable=true),
      *         @OA\Property(property="is_active", type="boolean"),
-     *         @OA\Property(property="supplier_ids", type="array", @OA\Items(type="integer"))
+     *         @OA\Property(property="supplier_ids", type="array", @OA\Items(type="string", format="uuid"))
      *     )),
      *
      *     @OA\Response(response=200, description="Updated"),
@@ -152,7 +152,7 @@ class ProductController extends Controller
      *     summary="Soft-delete a product (admin only)",
      *     security={{"bearerAuth":{}}},
      *
-     *     @OA\Parameter(name="product", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="product", in="path", required=true, @OA\Schema(type="string", format="uuid")),
      *
      *     @OA\Response(response=204, description="Deleted"),
      *     @OA\Response(response=403, description="Forbidden")

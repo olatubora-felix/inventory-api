@@ -20,6 +20,11 @@ Route::prefix('v1')->name('api.v1.')->group(function () {
         Route::get('auth/me', [AuthController::class, 'me'])->name('auth.me');
         Route::put('auth/profile', [AuthController::class, 'updateProfile'])->name('auth.profile.update');
 
+        Route::get('dashboard/stats', [ReportController::class, 'dashboardStats'])->name('dashboard.stats');
+        Route::get('dashboard/recent-stock-movements', [ReportController::class, 'recentStockMovements'])->name('dashboard.recent-stock-movements');
+        Route::get('dashboard/top-categories', [ReportController::class, 'topCategoriesByValue'])->name('dashboard.top-categories');
+        Route::get('dashboard/inventory-by-category', [ReportController::class, 'inventoryByCategory'])->name('dashboard.inventory-by-category');
+
         Route::get('products/low-stock', [ProductController::class, 'lowStock'])->name('products.low-stock');
 
         Route::apiResource('categories', CategoryController::class)->only(['index', 'show']);

@@ -693,6 +693,116 @@
                 ]
             }
         },
+        "/api/v1/dashboard/stats": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Key dashboard stats (total products, stock value, low stock items, total quantity)",
+                "operationId": "f29341f7f0141a51a16be687a6f4de83",
+                "responses": {
+                    "200": {
+                        "description": "Dashboard stats"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/dashboard/recent-stock-movements": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Recent stock movements",
+                "operationId": "f59cbfef5583584573c2d36bac107331",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Recent stock movements"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/dashboard/top-categories": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Top categories ranked by total stock value",
+                "operationId": "05552cd3d095e17f4ac75ce7ff23635a",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Top categories by stock value"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/dashboard/inventory-by-category": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Inventory breakdown by category",
+                "operationId": "29777ddfc1954bfb8d4a1464b51af81c",
+                "responses": {
+                    "200": {
+                        "description": "Inventory breakdown by category"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/reports/inventory-summary": {
             "get": {
                 "tags": [
@@ -1375,6 +1485,10 @@
         {
             "name": "Reports",
             "description": "Inventory reports (admin only)"
+        },
+        {
+            "name": "Dashboard",
+            "description": "Dashboard"
         }
     ]
 }

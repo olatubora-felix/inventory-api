@@ -20,13 +20,13 @@ class ApiExceptionRenderer
      */
     public function render(Throwable $e, Request $request): mixed
     {
-        if (!$request->is('api/*')) {
+        if (! $request->is('api/*')) {
             return null;
         }
 
         $response = match (true) {
             $e instanceof ValidationException => $this->renderValidation($e),
-            $e instanceof AuthenticationException => ApiResponse::error('Unauthenticated.', 401),
+            $e instanceof AuthenticationException => ApiResponse::error('Unauthenticated', 401),
             $e instanceof AuthorizationException => ApiResponse::error($e->getMessage() ?: 'Forbidden.', 403),
             $e instanceof ModelNotFoundException => ApiResponse::error('Resource not found.', 404),
             $e instanceof NotFoundHttpException => ApiResponse::error('Not found.', 404),

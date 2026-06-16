@@ -143,7 +143,7 @@ class ReportController extends Controller
                 'categories.id',
                 'categories.name',
                 DB::raw('COUNT(DISTINCT products.id) AS total_products'),
-                DB::raw('COUNT(DISTINCT CASE WHEN products.is_active = 1 THEN products.id END) AS active_products'),
+                DB::raw('COUNT(DISTINCT CASE WHEN products.is_active = true THEN products.id END) AS active_products'),
                 DB::raw('COALESCE(SUM(stock_levels.quantity_on_hand), 0) AS total_quantity'),
                 DB::raw('COALESCE(SUM(COALESCE(products.cost_price, 0) * stock_levels.quantity_on_hand), 0) AS total_value'),
                 DB::raw('COUNT(DISTINCT CASE WHEN stock_levels.quantity_on_hand <= products.reorder_level THEN products.id END) AS low_stock_count'),

@@ -3,7 +3,23 @@
 use App\Models\Category;
 
 it('returns 401 for unauthenticated list request', function () {
-    $this->getJson('/api/v1/categories')->assertUnauthorized();
+    $response = $this->getJson('/api/v1/categories');
+    $response->assertUnauthorized()
+        ->assertJson([
+            'success' => false,
+            'message' => 'Unauthenticated',
+            'data' => null,
+        ]);
+});
+
+it('returns 401 when unauthenticated without json accept header', function () {
+    $response = $this->get('/api/v1/categories');
+    $response->assertUnauthorized()
+        ->assertJson([
+            'success' => false,
+            'message' => 'Unauthenticated',
+            'data' => null,
+        ]);
 });
 
 it('lists categories for authenticated users', function () {

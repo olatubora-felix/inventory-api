@@ -61,10 +61,6 @@ class ApiResponse
             return null;
         }
 
-        if ($data instanceof JsonResource) {
-            return $data->resolve();
-        }
-
         if ($data instanceof ResourceCollection) {
             $request = request();
             $items = $data->resolve($request);
@@ -89,6 +85,10 @@ class ApiResponse
             }
 
             return ['data' => $items];
+        }
+
+        if ($data instanceof JsonResource) {
+            return $data->resolve();
         }
 
         if ($data instanceof AbstractPaginator || $data instanceof AbstractCursorPaginator) {

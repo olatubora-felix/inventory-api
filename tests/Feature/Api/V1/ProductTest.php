@@ -13,7 +13,7 @@ it('lists products with stock levels eager loaded', function () {
     $this->getJson('/api/v1/products')
         ->assertSuccessful()
         ->assertJsonPath('success', true)
-        ->assertJsonStructure(['data' => [['id', 'stock_level']]]);
+        ->assertJsonStructure(['data' => ['data' => [['id', 'stock_level']], 'meta', 'links']]);
 });
 
 it('returns 401 when unauthenticated', function () {
@@ -28,7 +28,7 @@ it('filters products by category', function () {
 
     $this->getJson("/api/v1/products?category_id={$cat->id}")
         ->assertSuccessful()
-        ->assertJsonCount(2, 'data');
+        ->assertJsonCount(2, 'data.data');
 });
 
 it('shows a product with its suppliers and stock level', function () {
@@ -99,8 +99,8 @@ it('returns low stock products at the correct endpoint', function () {
 
     $this->getJson('/api/v1/products/low-stock')
         ->assertSuccessful()
-        ->assertJsonCount(1, 'data')
-        ->assertJsonPath('data.0.id', $product->id);
+        ->assertJsonCount(1, 'data.data')
+        ->assertJsonPath('data.data.0.id', $product->id);
 });
 
 it('allows admin to soft-delete a product', function () {

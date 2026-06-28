@@ -68,7 +68,7 @@ it('lists movements filterable by product and type', function () {
 
     $this->getJson("/api/v1/stock-movements?product_id={$product->id}&type=purchase")
         ->assertSuccessful()
-        ->assertJsonCount(1, 'data');
+        ->assertJsonCount(1, 'data.data');
 });
 
 it('shows a single movement with product and user', function () {
